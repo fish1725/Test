@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Vox.Builder.Geometry;
+using Vox.Builder.RenderGeometry;
 using Vox.Core;
 using g3;
 using Vox.Common;

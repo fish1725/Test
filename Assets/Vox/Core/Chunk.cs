@@ -15,8 +15,10 @@ namespace Vox.Core
         private readonly AxisAlignedBox3i _bounds;
         private readonly ChunkRenderGeometryHandler _renderGeometryHandler;
 
-        public ARenderGeometryHandler RenderGeometryHandler {
-            get {
+        public ARenderGeometryHandler RenderGeometryHandler
+        {
+            get
+            {
                 return _renderGeometryHandler;
             }
         }
@@ -26,16 +28,17 @@ namespace Vox.Core
             _blocks = new BlockData[Env.ChunkSizePow3];
             _bounds = new AxisAlignedBox3i(0, 0, 0, Env.ChunkSize, Env.ChunkSize, Env.ChunkSize);
             _renderGeometryHandler = new ChunkRenderGeometryHandler(this, null);
-		}
+        }
 
-		public BlockData GetBlockData(Vector3i pos)
-		{
-            if(pos.x < 0 || pos.x >= Env.ChunkSize || pos.y < 0 || pos.y >= Env.ChunkSize || pos.z < 0 || pos.z >= Env.ChunkSize)
+        public BlockData GetBlockData(Vector3i pos)
+        {
+            if (pos.x < 0 || pos.x >= Env.ChunkSize || pos.y < 0 || pos.y >= Env.ChunkSize || pos.z < 0 || pos.z >= Env.ChunkSize)
                 return BlockDatabase.AirBlock;
             return _blocks[GetIndex1DFrom3D(pos.x, pos.y, pos.z)];
-		}
+        }
 
-        public Block GetBlock(Vector3i pos) {
+        public Block GetBlock(Vector3i pos)
+        {
             return _blockTypes[GetBlockData(pos).Type];
         }
 
@@ -46,9 +49,9 @@ namespace Vox.Core
 
         public BlockData GetBlockData(int x, int y, int z)
         {
-			if (x < 0 || x >= Env.ChunkSize || y < 0 || y >= Env.ChunkSize || z < 0 || z >= Env.ChunkSize)
-				return BlockDatabase.AirBlock;
-			return _blocks[GetIndex1DFrom3D(x, y, z)];
+            if (x < 0 || x >= Env.ChunkSize || y < 0 || y >= Env.ChunkSize || z < 0 || z >= Env.ChunkSize)
+                return BlockDatabase.AirBlock;
+            return _blocks[GetIndex1DFrom3D(x, y, z)];
         }
 
         public Block GetBlock(int x, int y, int z)
@@ -71,7 +74,9 @@ namespace Vox.Core
             try
             {
                 _blocks[GetIndex1DFrom3D(pos.x, pos.y, pos.z)] = data;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 Debug.LogFormat("{0}", pos);
                 throw e;
             }
@@ -82,7 +87,8 @@ namespace Vox.Core
             _blocks[GetIndex1DFrom3D(x, y, z)] = data;
         }
 
-        public void SetBlockType(ushort type, Block block) {
+        public void SetBlockType(ushort type, Block block)
+        {
             _blockTypes[type] = block;
         }
     }

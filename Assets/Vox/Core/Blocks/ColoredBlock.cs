@@ -13,7 +13,7 @@ namespace Vox.Core.Blocks
             
         }
 
-        public override void BuildFace(IBlockSet blocks, ref Vector3[] face, Builder.Geometry.BlockFace blockFace)
+        public override void BuildFace(IBlockSet blocks, ref Vector3[] face, Builder.RenderGeometry.BlockFace blockFace)
         {
             //Debug.LogFormat("face: ({0}) ({1}) ({2}) ({3})", face[0], face[1], face[2], face[3]);
             //var backface = (blockFace.direction.x + blockFace.direction.y) < 0 || blockFace.direction.z > 0;

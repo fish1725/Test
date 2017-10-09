@@ -11,7 +11,7 @@ namespace Vox.Utils
     {
         private IBlockSet _chunk;
         public float cellSize = 1;
-        public MeshFilter meshFilter;
+        public SkinnedMeshRenderer meshFilter;
 
         private IntrTriangle3Triangle3 _tt = new IntrTriangle3Triangle3(new Triangle3d(), new Triangle3d());
 
@@ -56,7 +56,7 @@ namespace Vox.Utils
         public void Materlize(Dictionary<Vector3, bool> data)
         {
             Globals.blockDatabase.SetBlock(1, new ColoredBlock(new BlockConfig { Type = 1, Name = "CB", Solid = true }));
-			Globals.blockDatabase.SetBlock(0, new Block(new BlockConfig { Type = 0, Name = "Air" }));
+            Globals.blockDatabase.SetBlock(0, new Block(new BlockConfig { Type = 0, Name = "Air" }));
             int minX = int.MaxValue;
             int maxX = int.MinValue;
             int minY = int.MaxValue;
@@ -68,36 +68,45 @@ namespace Vox.Utils
             {
                 if (item.Value)
                 {
-                    if(minX > (int)item.Key.x) {
+                    if (minX > (int)item.Key.x)
+                    {
                         minX = (int)item.Key.x;
                     }
-                    if(maxX < (int)item.Key.x) {
+                    if (maxX < (int)item.Key.x)
+                    {
                         maxX = (int)item.Key.x;
                     }
-                    if(minY > (int)item.Key.y) {
+                    if (minY > (int)item.Key.y)
+                    {
                         minY = (int)item.Key.y;
                     }
-                    if(maxY < (int)item.Key.y) {
+                    if (maxY < (int)item.Key.y)
+                    {
                         maxY = (int)item.Key.y;
                     }
-                    if(minZ > (int)item.Key.z) {
+                    if (minZ > (int)item.Key.z)
+                    {
                         minZ = (int)item.Key.z;
                     }
-                    if(maxZ < (int)item.Key.z) {
+                    if (maxZ < (int)item.Key.z)
+                    {
                         maxZ = (int)item.Key.z;
                     }
                 }
-			}
+            }
             _chunk = new VoxObject(minX, maxX + 1, minY, maxY + 1, minZ, maxZ + 1);
-			foreach (var item in data)
-			{
-				if (item.Value)
-				{
+            foreach (var item in data)
+            {
+                if (item.Value)
+                {
                     _chunk.SetBlockData(item.Key, new BlockData(1, true));
-				}
-			}
-			_chunk.RenderGeometryHandler.Build();
-			_chunk.RenderGeometryHandler.Commit();
+                }
+            }
+            System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
+            _chunk.RenderGeometryHandler.Build();
+            sw.Stop();
+            Debug.LogFormat("{0}", sw.ElapsedMilliseconds);
+            _chunk.RenderGeometryHandler.Commit();
         }
 
         public bool Intersect(Vector3 center, float size, Vector3 p1, Vector3 p2, Vector3 p3)
