@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Vox.Builder.Geometry;
-using g3;
 
 namespace Vox.Core
 {
@@ -24,7 +22,7 @@ namespace Vox.Core
         public int PhysicMaterialID { get { return _config.PhysicMaterialID; }}
         public bool Solid { get { return _config.Solid; }}
 
-        public virtual void BuildFace(IBlockSet blocks, ref Vector3i[] face, BlockFace blockFace) {
+        public virtual void BuildFace(IBlockSet blocks, ref Vector3[] face, BlockFace blockFace) {
             
         }
     }

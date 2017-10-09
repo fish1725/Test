@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Vox.Core;
 
 namespace Vox.Builder
@@ -98,10 +99,11 @@ namespace Vox.Builder
 
                         mask[blockSet.GetIndex1DFrom3D(x, y, z)] = true;
 
-                        var block = blockSet.GetBlock(x, y, z);
+						var block = blockSet.GetBlock(x, y, z);
 
                         if (!CanBuild(block))
-                            continue;
+							continue;
+                        
 
                         int x1 = x, y1 = y, z1 = z, x2 = x + 1, y2 = y + 1, z2 = z + 1;
 

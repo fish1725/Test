@@ -19,5 +19,10 @@
 			y -= Env.ChunkPadding;
 			z -= Env.ChunkPadding;
 		}
+
+        public static int MakeChunkCoordinate(int x) 
+        {
+            return ((x >= 0 ? x : x - Env.ChunkSize1) / Env.ChunkSize) * Env.ChunkSize;
+        }
     }
 }

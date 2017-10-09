@@ -6,9 +6,9 @@ namespace Vox.Handler
     public class ChunkRenderGeometryHandler : ARenderGeometryHandler
 	{
 		private const string PoolEntryName = "Renderable";
-		private readonly Chunk chunk;
+		private readonly IBlockSet chunk;
 
-		public ChunkRenderGeometryHandler(Chunk chunk, Material[] materials) : base(PoolEntryName, materials)
+        public ChunkRenderGeometryHandler(IBlockSet chunk, Material[] materials) : base(PoolEntryName, materials)
 		{
 			this.chunk = chunk;
 		}

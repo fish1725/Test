@@ -13,10 +13,10 @@ namespace Vox.Core.Blocks
             
         }
 
-        public override void BuildFace(IBlockSet blocks, ref g3.Vector3i[] face, Builder.Geometry.BlockFace blockFace)
+        public override void BuildFace(IBlockSet blocks, ref Vector3[] face, Builder.Geometry.BlockFace blockFace)
         {
             //Debug.LogFormat("face: ({0}) ({1}) ({2}) ({3})", face[0], face[1], face[2], face[3]);
-            var backface = (blockFace.direction.x + blockFace.direction.y) < 0 || blockFace.direction.z > 0;
+            //var backface = (blockFace.direction.x + blockFace.direction.y) < 0 || blockFace.direction.z > 0;
             VertexData[] vertexData = Globals.VertexDataArrayPool.PopExact(4);
 			vertexData[0].Vertex = face[0];
             vertexData[0].Color = WHITE;
@@ -37,7 +37,7 @@ namespace Vox.Core.Blocks
             BlockUtils.AdjustColors(vertexData, blockFace.aoData);
 
             var batcher = blocks.RenderGeometryHandler.Batcher;
-            batcher.AddFace(vertexData, backface, blockFace.materialId);
+            batcher.AddFace(vertexData, blockFace.materialId);
 			Globals.VertexDataArrayPool.Push(vertexData);
         }
     }

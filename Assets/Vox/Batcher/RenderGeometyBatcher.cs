@@ -154,9 +154,9 @@ namespace Vox.Batcher
 		///     Addds one face to our render buffer
 		/// </summary>
 		/// <param name="vertexData"> An array of 4 vertices forming the face</param>
-		/// <param name="backFace">If false, vertices are added clock-wise</param>
 		/// <param name="materialID">ID of material to use when building the mesh</param>
-		public void AddFace(VertexData[] vertexData, bool backFace, int materialID)
+		/// <param name="backFace">If false, vertices are added clock-wise</param>
+		public void AddFace(VertexData[] vertexData, int materialID, bool backFace = false)
 		{
 			Assert.IsTrue(vertexData.Length == 4);
 

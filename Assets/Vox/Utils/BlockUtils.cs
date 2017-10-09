@@ -15,6 +15,59 @@ namespace Vox.Utils
 		///     |  |
 		///     0--3
 
+		public static readonly Vector3[][] PaddingOffsets =
+		{
+			new[]
+			{
+                // up
+                new Vector3(-Env.BlockFacePadding, +Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, +Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, +Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, +Env.BlockFacePadding, -Env.BlockFacePadding)
+			},
+			new[]
+			{
+                // down
+                new Vector3(+Env.BlockFacePadding, -Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, -Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, -Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, -Env.BlockFacePadding, -Env.BlockFacePadding),
+			},
+
+			new[]
+			{
+                // forward
+                new Vector3(+Env.BlockFacePadding, -Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, +Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, +Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, -Env.BlockFacePadding, +Env.BlockFacePadding)
+			},
+			new[]
+			{
+                // back
+                new Vector3(-Env.BlockFacePadding, -Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, +Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, +Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, -Env.BlockFacePadding, -Env.BlockFacePadding),
+			},
+
+			new[]
+			{
+                // right
+                new Vector3(+Env.BlockFacePadding, -Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, +Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, +Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(+Env.BlockFacePadding, -Env.BlockFacePadding, +Env.BlockFacePadding)
+			},
+			new[]
+			{
+                // left
+                new Vector3(-Env.BlockFacePadding, -Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, +Env.BlockFacePadding, +Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, +Env.BlockFacePadding, -Env.BlockFacePadding),
+				new Vector3(-Env.BlockFacePadding, -Env.BlockFacePadding, -Env.BlockFacePadding),
+			}
+		};
 
 		public static BlockFace BuildBlockFace(IBlockSet blocks, Block block, int x, int y, int z, Vector3i direction)
 		{
@@ -41,23 +94,23 @@ namespace Vox.Utils
 				nSolid = blocks.GetBlock(x, y + 1, z + 1).Solid;      //  0,1, 1
 				neSolid = blocks.GetBlock(x + 1, y + 1, z + 1).Solid; //  1,1, 1
             } else if (direction == Vector3i.down) {
-				swSolid = blocks.GetBlock(x - 1, y - 1, z - 1).Solid; // -1,-1,-1
+				swSolid = blocks.GetBlock(x + 1, y - 1, z - 1).Solid; // -1,-1,-1
 				sSolid = blocks.GetBlock(x, y - 1, z - 1).Solid;      //  0,-1,-1
-				seSolid = blocks.GetBlock(x + 1, y - 1, z - 1).Solid; //  1,-1,-1
-				wSolid = blocks.GetBlock(x - 1, y - 1, z).Solid;   // -1,-1, 0
-				eSolid = blocks.GetBlock(x + 1, y - 1, z).Solid;   //  1,-1, 0
-				nwSolid = blocks.GetBlock(x - 1,y - 1, z + 1).Solid; // -1,-1, 1
+				seSolid = blocks.GetBlock(x - 1, y - 1, z - 1).Solid; //  1,-1,-1
+				wSolid = blocks.GetBlock(x + 1, y - 1, z).Solid;   // -1,-1, 0
+				eSolid = blocks.GetBlock(x - 1, y - 1, z).Solid;   //  1,-1, 0
+				nwSolid = blocks.GetBlock(x + 1,y - 1, z + 1).Solid; // -1,-1, 1
 				nSolid = blocks.GetBlock(x, y - 1, z + 1).Solid;      //  0,-1, 1
-				neSolid = blocks.GetBlock(x + 1, y - 1, z + 1).Solid; //  1,-1, 1
+				neSolid = blocks.GetBlock(x - 1, y - 1, z + 1).Solid; //  1,-1, 1
             } else if (direction == Vector3i.forward) {
-				swSolid = blocks.GetBlock(x - 1, y - 1, z + 1).Solid; // -1,-1,1
-				seSolid = blocks.GetBlock(x + 1, y - 1, z + 1).Solid; //  1,-1,1
-				wSolid = blocks.GetBlock(x - 1, y, z + 1).Solid;   // -1, 0,1
-				eSolid = blocks.GetBlock(x + 1, y, z + 1).Solid;   //  1, 0,1
-				nwSolid = blocks.GetBlock(x - 1, y + 1, z + 1).Solid; // -1, 1,1
+				swSolid = blocks.GetBlock(x + 1, y - 1, z + 1).Solid; // -1,-1,1
+				seSolid = blocks.GetBlock(x - 1, y - 1, z + 1).Solid; //  1,-1,1
+				wSolid = blocks.GetBlock(x + 1, y, z + 1).Solid;   // -1, 0,1
+				eSolid = blocks.GetBlock(x - 1, y, z + 1).Solid;   //  1, 0,1
+				nwSolid = blocks.GetBlock(x + 1, y + 1, z + 1).Solid; // -1, 1,1
 				sSolid = blocks.GetBlock(x, y - 1, z + 1).Solid;      //  0,-1,1
 				nSolid = blocks.GetBlock(x, y + 1, z + 1).Solid;      //  0, 1,1
-				neSolid = blocks.GetBlock(x + 1, y + 1, z + 1).Solid; //  1, 1,1
+				neSolid = blocks.GetBlock(x - 1, y + 1, z + 1).Solid; //  1, 1,1
             } else if (direction == Vector3i.back) {
 				swSolid = blocks.GetBlock(x - 1, y - 1, z - 1).Solid; // -1,-1,-1
 				seSolid = blocks.GetBlock(x + 1, y - 1, z - 1).Solid; //  1,-1,-1
@@ -77,14 +130,14 @@ namespace Vox.Utils
 				nSolid = blocks.GetBlock(x + 1, y + 1, z).Solid;                      // 1, 1, 0
 				neSolid = blocks.GetBlock(x + 1, y + 1, z + 1).Solid;   // 1, 1, 1
             } else {
-				swSolid = blocks.GetBlock(x - 1, y - 1, z - 1).Solid;  // -1,-1,-1
+				swSolid = blocks.GetBlock(x - 1, y - 1, z + 1).Solid;  // -1,-1,-1
 				sSolid = blocks.GetBlock(x - 1, y - 1, z).Solid;                     // -1,-1, 0
-				seSolid = blocks.GetBlock(x - 1, y - 1, z + 1).Solid;  // -1,-1, 1
-				wSolid = blocks.GetBlock(x - 1, y, z - 1).Solid;    // -1, 0,-1
-				eSolid = blocks.GetBlock(x - 1, y, z + 1).Solid;    // -1, 0, 1
-				nwSolid = blocks.GetBlock(x - 1, y + 1, z - 1).Solid;  // -1, 1,-1
+				seSolid = blocks.GetBlock(x - 1, y - 1, z - 1).Solid;  // -1,-1, 1
+				wSolid = blocks.GetBlock(x - 1, y, z + 1).Solid;    // -1, 0,-1
+				eSolid = blocks.GetBlock(x - 1, y, z - 1).Solid;    // -1, 0, 1
+				nwSolid = blocks.GetBlock(x - 1, y + 1, z + 1).Solid;  // -1, 1,-1
 				nSolid = blocks.GetBlock(x - 1, y + 1, z).Solid;                     // -1, 1, 0
-				neSolid = blocks.GetBlock(x - 1, y + 1, z + 1).Solid;  // -1, 1, 1
+				neSolid = blocks.GetBlock(x - 1, y + 1, z - 1).Solid;  // -1, 1, 1
 			}
 
 
@@ -93,7 +146,7 @@ namespace Vox.Utils
 
 		public static void AdjustColors(VertexData[] vertexData, BlockFaceAOData light)
 		{
-			AdjustColorsAO(vertexData, light, 1);
+			AdjustColorsAO(vertexData, light, 0.5f);
 		}
 
 		private static void AdjustColorsAO(VertexData[] vertexData, BlockFaceAOData light, float strength)

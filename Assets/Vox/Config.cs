@@ -6,7 +6,7 @@ namespace Vox
 	public static class Env
 	{
 		//! Size of chunk's side
-		public const int ChunkPow = 6;
+		public const int ChunkPow = 5;
 
 		//! Size of block when rendering
 		public const float BlockSize = 1f;

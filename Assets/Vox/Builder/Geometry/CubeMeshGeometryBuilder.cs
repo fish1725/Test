@@ -89,7 +89,7 @@ namespace Vox.Builder.Geometry
         {
             var faces = Globals.blockFacePool.Pop(blockSet.GetBlockCount());
             var mask = Globals.BoolArrayPool.Pop(blockSet.GetBlockCount());
-            var face = Globals.Vector3iArrayPool.Pop(4);
+            var face = Globals.Vector3ArrayPool.Pop(4);
             int x, y, z;
 
 
@@ -548,7 +548,7 @@ namespace Vox.Builder.Geometry
 
             Globals.blockFacePool.Push(faces);
             Globals.BoolArrayPool.Push(mask);
-            Globals.Vector3iArrayPool.Push(face);
+            Globals.Vector3ArrayPool.Push(face);
         }
 
 

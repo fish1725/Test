@@ -3,6 +3,7 @@ using g3;
 using UnityEngine;
 using Vox.Builder.Geometry;
 using Vox.Common;
+using Vox.Database;
 
 namespace Vox
 {
@@ -32,6 +33,8 @@ namespace Vox
 		public static readonly ObjectPool<Mesh> MeshPool =
 			new ObjectPool<Mesh>(m => new Mesh(), 128, true);
 
-        public static readonly CubeMeshGeometryBuilder CubeMeshBuilder = new CubeMeshGeometryBuilder();
+        public static readonly MergedFacesGeometryBuilder CubeMeshBuilder = new MergedFacesGeometryBuilder();
+
+        public static readonly BlockDatabase blockDatabase = new BlockDatabase();
     }
 }

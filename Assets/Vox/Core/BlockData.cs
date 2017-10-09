@@ -88,6 +88,11 @@ namespace Vox.Core
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return string.Format("[BlockData: Data={0}, Solid={1}, Type={2}]", Data, Solid, Type);
+        }
     }
 
 }
