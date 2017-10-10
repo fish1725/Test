@@ -2,6 +2,7 @@
 using System.Collections;
 using Vox.Core;
 using System.Collections.Generic;
+using Vox.Core.Blocks;
 
 namespace Vox.Database
 {
@@ -14,6 +15,9 @@ namespace Vox.Database
         private Dictionary<ushort, Block> _blocks = new Dictionary<ushort, Block>();
             
         public Block GetBlock(ushort type) {
+			if (!_blocks.ContainsKey (type)) {
+				_blocks [type] = new ColoredBlock (new BlockConfig { Type = type, Name = "CB", Solid = true });
+			}
             return _blocks[type];
         }
 

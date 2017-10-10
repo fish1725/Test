@@ -75,6 +75,7 @@ namespace Vox.Utils
 			bf.block = block;
 			bf.direction = direction;
 			bf.aoData = BlockUtils.CalcBlockFaceAO(blocks, x, y, z, direction);
+			bf.position = new Vector3i (x, y, z);
 			return bf;
 		}
 

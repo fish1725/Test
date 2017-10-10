@@ -15,13 +15,16 @@ namespace Vox.Utils
 
         private IntrTriangle3Triangle3 _tt = new IntrTriangle3Triangle3(new Triangle3d(), new Triangle3d());
 
-        public Dictionary<Vector3, bool> VoxelizeSurface(Mesh mesh)
+		public Dictionary<Vector3, Color> VoxelizeSurface(Mesh mesh)
         {
             var triangles = mesh.triangles;
             var vertices = mesh.vertices;
+			var uvs = mesh.uv;
+			var tex = meshFilter.sharedMaterial.mainTexture as Texture2D;
 
             Bounds b = new Bounds();
-            Dictionary<Vector3, bool> re = new Dictionary<Vector3, bool>();
+			Dictionary<Vector3, Color> re = new Dictionary<Vector3, Color>();
+			Dictionary<Vector3, int> p2c = new Dictionary<Vector3, int> ();
 
             for (var i = 0; i < triangles.Length; i += 3)
             {
@@ -44,7 +47,20 @@ namespace Vox.Utils
                             var center = new Vector3(x, y, z);
                             if (Intersect(center, cellSize, p1, p2, p3))
                             {
-                                re[center] = true;
+								var uv1 = uvs [triangles [i]];
+								var uv2 = uvs [triangles [i + 1]];
+								var uv3 = uvs [triangles [i + 1]];
+
+								var c1 = tex.GetPixelBilinear (uv1.x, uv1.y);
+								var c2 = tex.GetPixelBilinear (uv2.x, uv2.y);
+								var c3 = tex.GetPixelBilinear (uv3.x, uv3.y);
+								int count = 0;
+								var c = (c1 + c2 + c3) / 3;
+								if (re.ContainsKey (center)) {
+									p2c.TryGetValue (center, out count);
+									c = re [center];
+								}
+								re[center] = (c * count + (c1 + c2 + c3) / 3) / (count + 1);
                             }
                         }
                     }
@@ -53,7 +69,7 @@ namespace Vox.Utils
             return re;
         }
 
-        public void Materlize(Dictionary<Vector3, bool> data)
+		public void Materlize(Dictionary<Vector3, Color> data)
         {
             Globals.blockDatabase.SetBlock(1, new ColoredBlock(new BlockConfig { Type = 1, Name = "CB", Solid = true }));
             Globals.blockDatabase.SetBlock(0, new Block(new BlockConfig { Type = 0, Name = "Air" }));
@@ -66,8 +82,6 @@ namespace Vox.Utils
 
             foreach (var item in data)
             {
-                if (item.Value)
-                {
                     if (minX > (int)item.Key.x)
                     {
                         minX = (int)item.Key.x;
@@ -92,15 +106,13 @@ namespace Vox.Utils
                     {
                         maxZ = (int)item.Key.z;
                     }
-                }
             }
             _chunk = new VoxObject(minX, maxX + 1, minY, maxY + 1, minZ, maxZ + 1);
             foreach (var item in data)
             {
-                if (item.Value)
-                {
-                    _chunk.SetBlockData(item.Key, new BlockData(1, true));
-                }
+				var c = (Color32)item.Value;
+				var t = (ushort)((c.r >> 3) << 10 | (c.g >> 3) << 5 | (c.b >> 3));
+				_chunk.SetBlockData(item.Key, new BlockData(t, true));
             }
             System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
             _chunk.RenderGeometryHandler.Build();

@@ -10,6 +10,7 @@ namespace Vox.Builder.RenderGeometry
     {
         public Block block;
         public Vector3i direction;
+		public Vector3i position;
         public int materialId;
         public BlockFaceAOData aoData;
     }

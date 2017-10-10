@@ -17,7 +17,7 @@ namespace Vox.Builder.RenderGeometry
             {
                 for (int z = z1; z < z2; ++z)
                 {
-                    if (mask[blocks.GetIndex1DFrom3D(x2, y, z)] || !CanMergeFace(blockFace, faces[blocks.GetIndex1DFrom3D(x2, y, z)]))
+                    if (mask[blocks.GetIndex1DFrom3D(x2, y, z)] || !CanMergeFace(blocks, blockFace, faces[blocks.GetIndex1DFrom3D(x2, y, z)]))
                         return false;
                 }
             }
@@ -41,7 +41,7 @@ namespace Vox.Builder.RenderGeometry
             {
                 for (int x = x1; x < x2; ++x)
                 {
-                    if (mask[blocks.GetIndex1DFrom3D(x, y2, z)] || !CanMergeFace(blockFace, faces[blocks.GetIndex1DFrom3D(x, y2, z)]))
+					if (mask[blocks.GetIndex1DFrom3D(x, y2, z)] || !CanMergeFace(blocks, blockFace, faces[blocks.GetIndex1DFrom3D(x, y2, z)]))
                         return false;
                 }
             }
@@ -64,7 +64,7 @@ namespace Vox.Builder.RenderGeometry
             {
                 for (int x = x1; x < x2; ++x)
                 {
-                    if (mask[blocks.GetIndex1DFrom3D(x, y, z2)] || !CanMergeFace(blockFace, faces[blocks.GetIndex1DFrom3D(x, y, z2)]))
+					if (mask[blocks.GetIndex1DFrom3D(x, y, z2)] || !CanMergeFace(blocks, blockFace, faces[blocks.GetIndex1DFrom3D(x, y, z2)]))
                         return false;
                 }
             }
@@ -579,11 +579,11 @@ namespace Vox.Builder.RenderGeometry
             Globals.Vector3ArrayPool.Push(face);
         }
 
-        private bool CanMergeFace(BlockFace blockFace1, BlockFace blockFace2)
+		private bool CanMergeFace(IBlockSet blocks, BlockFace blockFace1, BlockFace blockFace2)
         {
             return blockFace1.block != null
                              && blockFace2.block != null
-                             && blockFace1.block.Type == blockFace2.block.Type
+				&& blocks.GetBlockData(blockFace1.position).Type == blocks.GetBlockData(blockFace2.position).Type
                              && blockFace1.aoData.Equals(blockFace2.aoData);
         }
 
