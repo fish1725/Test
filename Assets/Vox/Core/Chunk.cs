@@ -8,7 +8,7 @@ using Vox.Utils;
 
 namespace Vox.Core
 {
-    public class Chunk : IBlockSet
+	public class Chunk : IBlockSet
     {
         private readonly BlockData[] _blocks;
         private readonly Dictionary<ushort, Block> _blockTypes = new Dictionary<ushort, Block>();
@@ -91,5 +91,11 @@ namespace Vox.Core
         {
             _blockTypes[type] = block;
         }
+
+		public float BlockSize {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
     }
 }

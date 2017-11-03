@@ -9,6 +9,8 @@ namespace Vox.Core
 {
     public class VoxObject : IBlockSet
     {
+		private float _blockSize;
+
         private int _sizeX;
         private int _sizeY;
         private int _sizeZ;
@@ -21,7 +23,7 @@ namespace Vox.Core
         private AxisAlignedBox3i _bounds;
         private ARenderGeometryHandler _renderGeometryHandler;
 
-        public VoxObject(int minX, int maxX, int minY, int maxY, int minZ, int maxZ) {
+		public VoxObject(int minX, int maxX, int minY, int maxY, int minZ, int maxZ, float blockSize) {
             _minX = minX;
             _maxX = maxX;
             _minY = minY;
@@ -31,6 +33,8 @@ namespace Vox.Core
             _sizeX = maxX - minX;
             _sizeY = maxY - minY;
             _sizeZ = maxZ - minZ;
+
+			_blockSize = blockSize;
 
             _blocks = new BlockData[_sizeX * _sizeY * _sizeZ];
             _bounds = new AxisAlignedBox3i(minX, minY, minZ, maxX, maxY, maxZ);
@@ -110,5 +114,11 @@ namespace Vox.Core
         {
             _blocks[GetIndex1DFrom3D(x, y, z)] = data;
         }
+
+		public float BlockSize {
+			get { 
+				return _blockSize;
+			}
+		}
     }
 }

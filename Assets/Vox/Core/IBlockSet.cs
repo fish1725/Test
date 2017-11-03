@@ -15,5 +15,6 @@ namespace Vox.Core
         int GetBlockCount();
         AxisAlignedBox3i GetBounds();
         ARenderGeometryHandler RenderGeometryHandler { get; }
+		float BlockSize { get; }
     }
 }

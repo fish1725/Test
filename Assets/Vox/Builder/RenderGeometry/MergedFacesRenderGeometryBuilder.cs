@@ -162,17 +162,17 @@ namespace Vox.Builder.RenderGeometry
                         bool rotated = blockFace.aoData.FaceRotationNecessary;
                         if (!rotated)
                         {
-                            face[0] = new Vector3(x, y1, z2) + BlockUtils.PaddingOffsets[5][0];
-                            face[1] = new Vector3(x, y2, z2) + BlockUtils.PaddingOffsets[5][1];
-                            face[2] = new Vector3(x, y2, z1) + BlockUtils.PaddingOffsets[5][2];
-                            face[3] = new Vector3(x, y1, z1) + BlockUtils.PaddingOffsets[5][3];
+							face[0] = new Vector3(x, y1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][0] * blockSet.BlockSize;
+							face[1] = new Vector3(x, y2, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][1] * blockSet.BlockSize;
+							face[2] = new Vector3(x, y2, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][2] * blockSet.BlockSize;
+							face[3] = new Vector3(x, y1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][3] * blockSet.BlockSize;
                         }
                         else
                         {
-                            face[0] = new Vector3(x, y2, z2) + BlockUtils.PaddingOffsets[5][1];
-                            face[1] = new Vector3(x, y2, z1) + BlockUtils.PaddingOffsets[5][2];
-                            face[2] = new Vector3(x, y1, z1) + BlockUtils.PaddingOffsets[5][3];
-                            face[3] = new Vector3(x, y1, z2) + BlockUtils.PaddingOffsets[5][0];
+							face[0] = new Vector3(x, y2, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][1] * blockSet.BlockSize;
+							face[1] = new Vector3(x, y2, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][2] * blockSet.BlockSize;
+							face[2] = new Vector3(x, y1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][3] * blockSet.BlockSize;
+							face[3] = new Vector3(x, y1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[5][0] * blockSet.BlockSize;
                         }
 
                         block.BuildFace(blockSet, ref face, blockFace);
@@ -241,17 +241,17 @@ namespace Vox.Builder.RenderGeometry
                         bool rotated = blockFace.aoData.FaceRotationNecessary;
                         if (!rotated)
                         {
-                            face[0] = new Vector3(x + 1, y1, z1) + BlockUtils.PaddingOffsets[4][0];
-                            face[1] = new Vector3(x + 1, y2, z1) + BlockUtils.PaddingOffsets[4][1];
-                            face[2] = new Vector3(x + 1, y2, z2) + BlockUtils.PaddingOffsets[4][2];
-                            face[3] = new Vector3(x + 1, y1, z2) + BlockUtils.PaddingOffsets[4][3];
+							face[0] = new Vector3(x + 1, y1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][0] * blockSet.BlockSize;
+							face[1] = new Vector3(x + 1, y2, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][1] * blockSet.BlockSize;
+							face[2] = new Vector3(x + 1, y2, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][2] * blockSet.BlockSize;
+							face[3] = new Vector3(x + 1, y1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][3] * blockSet.BlockSize;
                         }
                         else
                         {
-                            face[0] = new Vector3(x + 1, y2, z1) + BlockUtils.PaddingOffsets[4][1];
-                            face[1] = new Vector3(x + 1, y2, z2) + BlockUtils.PaddingOffsets[4][2];
-                            face[2] = new Vector3(x + 1, y1, z2) + BlockUtils.PaddingOffsets[4][3];
-                            face[3] = new Vector3(x + 1, y1, z1) + BlockUtils.PaddingOffsets[4][0];
+							face[0] = new Vector3(x + 1, y2, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][1] * blockSet.BlockSize;
+							face[1] = new Vector3(x + 1, y2, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][2] * blockSet.BlockSize;
+							face[2] = new Vector3(x + 1, y1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][3] * blockSet.BlockSize;
+							face[3] = new Vector3(x + 1, y1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[4][0] * blockSet.BlockSize;
                         }
 
                         block.BuildFace(blockSet, ref face, blockFace);
@@ -320,17 +320,17 @@ namespace Vox.Builder.RenderGeometry
                         bool rotated = blockFace.aoData.FaceRotationNecessary;
                         if (!rotated)
                         {
-                            face[0] = new Vector3(x1, y + 1, z1) + BlockUtils.PaddingOffsets[0][0];
-                            face[1] = new Vector3(x1, y + 1, z2) + BlockUtils.PaddingOffsets[0][1];
-                            face[2] = new Vector3(x2, y + 1, z2) + BlockUtils.PaddingOffsets[0][2];
-                            face[3] = new Vector3(x2, y + 1, z1) + BlockUtils.PaddingOffsets[0][3];
+							face[0] = new Vector3(x1, y + 1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][0] * blockSet.BlockSize;
+							face[1] = new Vector3(x1, y + 1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][1] * blockSet.BlockSize;
+							face[2] = new Vector3(x2, y + 1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][2] * blockSet.BlockSize;
+							face[3] = new Vector3(x2, y + 1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][3] * blockSet.BlockSize;
                         }
                         else
                         {
-                            face[0] = new Vector3(x1, y + 1, z2) + BlockUtils.PaddingOffsets[0][1];
-                            face[1] = new Vector3(x2, y + 1, z2) + BlockUtils.PaddingOffsets[0][2];
-                            face[2] = new Vector3(x2, y + 1, z1) + BlockUtils.PaddingOffsets[0][3];
-                            face[3] = new Vector3(x1, y + 1, z1) + BlockUtils.PaddingOffsets[0][0];
+							face[0] = new Vector3(x1, y + 1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][1] * blockSet.BlockSize;
+							face[1] = new Vector3(x2, y + 1, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][2] * blockSet.BlockSize;
+							face[2] = new Vector3(x2, y + 1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][3] * blockSet.BlockSize;
+							face[3] = new Vector3(x1, y + 1, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[0][0] * blockSet.BlockSize;
                         }
 
                         block.BuildFace(blockSet, ref face, blockFace);
@@ -399,17 +399,17 @@ namespace Vox.Builder.RenderGeometry
                         bool rotated = blockFace.aoData.FaceRotationNecessary;
                         if (!rotated)
                         {
-                            face[0] = new Vector3(x2, y, z1) + BlockUtils.PaddingOffsets[1][0];
-                            face[1] = new Vector3(x2, y, z2) + BlockUtils.PaddingOffsets[1][1];
-                            face[2] = new Vector3(x1, y, z2) + BlockUtils.PaddingOffsets[1][2];
-                            face[3] = new Vector3(x1, y, z1) + BlockUtils.PaddingOffsets[1][3];
+							face[0] = new Vector3(x2, y, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][0] * blockSet.BlockSize;
+							face[1] = new Vector3(x2, y, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][1] * blockSet.BlockSize;
+							face[2] = new Vector3(x1, y, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][2] * blockSet.BlockSize;
+							face[3] = new Vector3(x1, y, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][3] * blockSet.BlockSize;
                         }
                         else
                         {
-                            face[0] = new Vector3(x2, y, z2) + BlockUtils.PaddingOffsets[1][1];
-                            face[1] = new Vector3(x1, y, z2) + BlockUtils.PaddingOffsets[1][2];
-                            face[2] = new Vector3(x1, y, z1) + BlockUtils.PaddingOffsets[1][3];
-                            face[3] = new Vector3(x2, y, z1) + BlockUtils.PaddingOffsets[1][0];
+							face[0] = new Vector3(x2, y, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][1] * blockSet.BlockSize;
+							face[1] = new Vector3(x1, y, z2) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][2] * blockSet.BlockSize;
+							face[2] = new Vector3(x1, y, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][3] * blockSet.BlockSize;
+							face[3] = new Vector3(x2, y, z1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[1][0] * blockSet.BlockSize;
                         }
 
                         block.BuildFace(blockSet, ref face, blockFace);
@@ -478,17 +478,17 @@ namespace Vox.Builder.RenderGeometry
                         bool rotated = blockFace.aoData.FaceRotationNecessary;
                         if (!rotated)
                         {
-                            face[0] = new Vector3(x2, y1, z + 1) + BlockUtils.PaddingOffsets[2][0];
-                            face[1] = new Vector3(x2, y2, z + 1) + BlockUtils.PaddingOffsets[2][1];
-                            face[2] = new Vector3(x1, y2, z + 1) + BlockUtils.PaddingOffsets[2][2];
-                            face[3] = new Vector3(x1, y1, z + 1) + BlockUtils.PaddingOffsets[2][3];
+							face[0] = new Vector3(x2, y1, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][0] * blockSet.BlockSize;
+							face[1] = new Vector3(x2, y2, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][1] * blockSet.BlockSize;
+							face[2] = new Vector3(x1, y2, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][2] * blockSet.BlockSize;
+							face[3] = new Vector3(x1, y1, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][3] * blockSet.BlockSize;
                         }
                         else
                         {
-                            face[0] = new Vector3(x2, y2, z + 1) + BlockUtils.PaddingOffsets[2][1];
-                            face[1] = new Vector3(x1, y2, z + 1) + BlockUtils.PaddingOffsets[2][2];
-                            face[2] = new Vector3(x1, y1, z + 1) + BlockUtils.PaddingOffsets[2][3];
-                            face[3] = new Vector3(x2, y1, z + 1) + BlockUtils.PaddingOffsets[2][0];
+							face[0] = new Vector3(x2, y2, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][1] * blockSet.BlockSize;
+							face[1] = new Vector3(x1, y2, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][2] * blockSet.BlockSize;
+							face[2] = new Vector3(x1, y1, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][3] * blockSet.BlockSize;
+							face[3] = new Vector3(x2, y1, z + 1) * blockSet.BlockSize + BlockUtils.PaddingOffsets[2][0] * blockSet.BlockSize;
                         }
 
                         block.BuildFace(blockSet, ref face, blockFace);
@@ -557,17 +557,17 @@ namespace Vox.Builder.RenderGeometry
                         bool rotated = blockFace.aoData.FaceRotationNecessary;
                         if (!rotated)
                         {
-                            face[0] = new Vector3(x1, y1, z) + BlockUtils.PaddingOffsets[3][0];
-                            face[1] = new Vector3(x1, y2, z) + BlockUtils.PaddingOffsets[3][1];
-                            face[2] = new Vector3(x2, y2, z) + BlockUtils.PaddingOffsets[3][2];
-                            face[3] = new Vector3(x2, y1, z) + BlockUtils.PaddingOffsets[3][3];
+							face[0] = new Vector3(x1, y1, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][0] * blockSet.BlockSize;
+							face[1] = new Vector3(x1, y2, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][1] * blockSet.BlockSize;
+							face[2] = new Vector3(x2, y2, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][2] * blockSet.BlockSize;
+							face[3] = new Vector3(x2, y1, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][3] * blockSet.BlockSize;
                         }
                         else
                         {
-                            face[0] = new Vector3(x1, y2, z) + BlockUtils.PaddingOffsets[3][1];
-                            face[1] = new Vector3(x2, y2, z) + BlockUtils.PaddingOffsets[3][2];
-                            face[2] = new Vector3(x2, y1, z) + BlockUtils.PaddingOffsets[3][3];
-                            face[3] = new Vector3(x1, y1, z) + BlockUtils.PaddingOffsets[3][0];
+							face[0] = new Vector3(x1, y2, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][1] * blockSet.BlockSize;
+							face[1] = new Vector3(x2, y2, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][2] * blockSet.BlockSize;
+							face[2] = new Vector3(x2, y1, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][3] * blockSet.BlockSize;
+							face[3] = new Vector3(x1, y1, z) * blockSet.BlockSize + BlockUtils.PaddingOffsets[3][0] * blockSet.BlockSize;
                         }
 
                         block.BuildFace(blockSet, ref face, blockFace);

@@ -38,14 +38,14 @@ namespace Vox.Utils
                 b.Encapsulate(p2);
                 b.Encapsulate(p3);
 
-                for (float x = Mathf.FloorToInt(b.min.x / cellSize) * cellSize, maxx = Mathf.CeilToInt(b.max.x / cellSize) * cellSize; x <= maxx; x += cellSize)
+                for (float x = Mathf.FloorToInt(b.min.x / cellSize), maxx = Mathf.CeilToInt(b.max.x / cellSize); x <= maxx; x += 1)
                 {
-                    for (float y = Mathf.FloorToInt(b.min.y / cellSize) * cellSize, maxy = Mathf.CeilToInt(b.max.y / cellSize) * cellSize; y <= maxy; y += cellSize)
+                    for (float y = Mathf.FloorToInt(b.min.y / cellSize), maxy = Mathf.CeilToInt(b.max.y / cellSize); y <= maxy; y += 1)
                     {
-                        for (float z = Mathf.FloorToInt(b.min.z / cellSize) * cellSize, maxz = Mathf.CeilToInt(b.max.z / cellSize) * cellSize; z <= maxz; z += cellSize)
+                        for (float z = Mathf.FloorToInt(b.min.z / cellSize), maxz = Mathf.CeilToInt(b.max.z / cellSize); z <= maxz; z += 1)
                         {
-                            var center = new Vector3(x, y, z);
-                            if (Intersect(center, cellSize, p1, p2, p3))
+							var center = new Vector3(x, y, z);
+							if (Intersect(center * cellSize, cellSize, p1, p2, p3))
                             {
 								var uv1 = uvs [triangles [i]];
 								var uv2 = uvs [triangles [i + 1]];
@@ -107,7 +107,7 @@ namespace Vox.Utils
                         maxZ = (int)item.Key.z;
                     }
             }
-            _chunk = new VoxObject(minX, maxX + 1, minY, maxY + 1, minZ, maxZ + 1);
+			_chunk = new VoxObject(minX, maxX + 1, minY, maxY + 1, minZ, maxZ + 1, cellSize);
             foreach (var item in data)
             {
 				var c = (Color32)item.Value;
