@@ -1,5 +1,6 @@
 ﻿using g3;
 using Vox.Handler;
+using Vox.DataProvider;
 
 namespace Vox.Core
 {
@@ -16,5 +17,6 @@ namespace Vox.Core
         AxisAlignedBox3i GetBounds();
         ARenderGeometryHandler RenderGeometryHandler { get; }
 		float BlockSize { get; }
+		IDataProvider DataProvider { get; }
     }
 }
